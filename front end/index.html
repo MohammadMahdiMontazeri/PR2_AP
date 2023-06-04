@@ -4,10 +4,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Outfitify</title>
         <script src="https://kit.fontawesome.com/06f4ff7068.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="home-style.css">
+        <link rel="stylesheet" href="animate.css">
     </head>
     <body>
         <header>
@@ -25,8 +26,31 @@
                 </div>
             </nav>
             <section class="slider">
+                <div class="slides">
+                    <div class="item active" id="slide1">
+                        <img src="images/s1.jpg" alt="">
+                        <span>متن اسلاید یک</span>
+                    </div>
+                    <div class="item" id="slide2">
+                        <img src="images/s2.jpg" alt="">
+                        <span style="color: aliceblue;">متن اسلاید دو</span>
+                    </div>
+                    <div class="item" id="slide3">
+                        <img src="images/s3.jpg" alt="">
+                        <span >متن اسلاید سه</span>
+                    </div>
+
+                </div>
+                <div class="buttons">
+                    <i onclick="setSlide('slide1' , 1)" class="fa-solid fa-circle"></i>
+                    <i onclick="setSlide('slide2' , 2)" class="fa-solid fa-circle"></i>
+                    <i onclick="setSlide('slide3' , 3)" class="fa-solid fa-circle"></i>
+                </div>
 
             </section>
         </header>
+
+
+        <script src="main.js"></script>
     </body>
 </html>
