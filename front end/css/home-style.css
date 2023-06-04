@@ -55,10 +55,6 @@ header nav .nav-left .login a{
 
 }
 
-.slider .slides{
-
-}
-
 .slider .slides .item{
     display: none;
     position: relative;
@@ -105,3 +101,83 @@ header nav .nav-left .login a{
 .slider .buttons i:hover{
     color: rgba(91, 86, 86, 0.4);
 }
+
+/* product section  */
+
+.product{
+    padding: 20px 10px;
+    font-size: 1em;
+}
+
+.product .shoping-card{
+    text-align: center;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .2);
+    margin: 10px 15px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.shoping-card .img-sec{
+    position: relative;
+}
+
+.shoping-card .img-sec img{
+    width: 60%;
+}
+
+.shoping-card .title{
+    color: #333;
+    margin: 15px;
+}
+
+.shoping-card .buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+
+.shoping-card .buttons .right .price{
+    color: #666;
+    font-weight: bold;
+}
+
+.shoping-card .buttons .left{
+    display: flex;
+}
+
+.shoping-card .buttons .left .extend-btn{
+    display: flex;
+    margin-left: 5px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2ecc71;
+    color: white;
+    width: 40px;
+    padding : 8px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: .75s;
+
+}
+
+.shoping-card .buttons .left .extend-btn:hover{
+    width:  85px;
+}
+
+.shoping-card .buttons .left .extend-btn:hover .b-text{
+    display: block;
+}
+
+.shoping-card .buttons .left .extend-btn .b-text{
+    display: none;
+    color: white;
+}
+
+.shoping-card .buttons .left .extend-btn  .b-icon{
+    color: white;
+    padding-top: 3px;
+}
+
+
