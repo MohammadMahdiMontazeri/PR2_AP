@@ -109,7 +109,7 @@ header nav .nav-left .login a{
     font-size: 1em;
 }
 
-.product .shoping-card{
+.shoping-card{
     text-align: center;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .2);
     margin: 10px 15px;
@@ -181,3 +181,23 @@ header nav .nav-left .login a{
 }
 
 
+.owl-stage-outer{
+    direction: ltr;
+}
+
+.draggable-list img{
+    width: 70% !important;
+    margin: auto;
+
+}
+
+.draggable-list .title{
+    padding: 0px 22px 20px 20px;
+}
+
+.draggable-list .title span{
+    font-size: 1.2em;
+    color: #444;
+    border-bottom: 2px solid #e74c3c;
+    border-radius: 8px;
+}
