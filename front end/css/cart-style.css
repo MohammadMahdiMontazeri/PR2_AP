@@ -1,0 +1,143 @@
+header{
+    font-size: 1em;
+}
+
+/* navigation bar */
+
+header nav{
+    display: flex;
+    justify-content: right;
+    padding: 10px 15px;
+    font-size: 1em;
+}
+
+header nav .nav-right{
+    display: flex;
+    align-items: center;
+}
+header nav .nav-right a{
+    color: #444;
+    padding: 5px 10px;
+    margin: 0px 5px;
+    font-size: 1.1em;
+}
+
+/* body */
+
+.cart-container{
+    background: radial-gradient( circle farthest-corner at 50% 50%,  rgb(151, 115, 173) 0%, rgb(97, 91, 225) 81.3% ); 
+    min-height: 93.5vh;
+    height: auto;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.cart-box{
+    font-size: 0.8em;
+    box-shadow: 0px 2px 8px 0px rgba(225, 225, 225, 0.4);
+    border-radius: 15px;
+    background-color: rgba(225, 225, 225, 0.1);
+    padding: 25px 35px;
+    color: white;
+    margin: 40px 30px;
+    width: 80%;
+    height: fit-content;
+}
+
+.cart-box .cart-body{
+    display: flex;
+    justify-content: center;
+}
+
+.cart-box .cart-body table{
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 0px;
+}
+
+.cart-box .cart-body table i{
+    padding: 3px;
+    color: white;
+    font-size: 1.05em;
+}
+
+.cart-box .cart-body table i:hover{
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    box-shadow: 0px 2px 8px 0px rgba(255, 255, 255, 0.3);
+}
+
+.cart-box .cart-body table thead{
+    height: 70px; 
+}
+
+
+.cart-box .cart-body table thead .head-cart span{
+    font-size: 16px;
+    font-weight: bold ;
+}
+
+.cart-box .cart-body tbody{
+    margin-top: 10px;
+}
+
+.cart-box .cart-body tbody .product-in-cart{
+    height: 165px;
+}
+
+.cart-box .cart-body tbody .product-in-cart:hover{
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 60px;
+}
+
+.cart-box .cart-body tbody .product-in-cart .quantity{
+    width: 55px;
+}
+
+
+.cart-box .cart-body tbody .product-in-cart span{
+    font-weight: bold;
+    font-size: 13.5px;
+}
+
+.cart-box .cart-body tbody .product-in-cart img{
+    width: 150px;
+    border-radius: 75px;
+}
+
+.cart-box .footer-cart{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.cart-box .footer-cart span{
+    font-size: 16px;
+    font-weight: bold ;
+    padding-top: 10px;
+}
+
+.cart-box form .submit-btn-container{
+    text-align: center;
+
+}
+
+.cart-box form .submit-btn-container input{
+    border: none;
+    border-radius: 35px;
+    background-color: rgb(85, 26, 158);
+    color: rgb(240, 240, 240);
+    padding: 10px 40px;
+    font-size: 1.3em;
+    cursor: pointer;
+    margin-top: 45px;
+    margin-bottom: 10px;
+}
+
+.cart-box form .submit-btn-container input:hover{
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
