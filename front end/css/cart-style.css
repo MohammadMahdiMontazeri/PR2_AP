@@ -69,17 +69,10 @@ header nav .nav-right a{
     box-shadow: 0px 2px 8px 0px rgba(255, 255, 255, 0.3);
 }
 
-
-
 .cart-box .cart-body table thead{
-
-    height: 70px;
-    
+    height: 70px; 
 }
 
-.cart-box .cart-body table thead .head-cart{
-
-}
 
 .cart-box .cart-body table thead .head-cart span{
     font-size: 16px;
@@ -101,17 +94,8 @@ header nav .nav-right a{
 
 .cart-box .cart-body tbody .product-in-cart .quantity{
     width: 55px;
-
-
-}
-.cart-box .cart-body tbody .product-in-cart .quantity a{
-
 }
 
-.cart-box .cart-body tbody .product-in-cart .quantity span{
-
-
-}
 
 .cart-box .cart-body tbody .product-in-cart span{
     font-weight: bold;
@@ -123,8 +107,17 @@ header nav .nav-right a{
     border-radius: 75px;
 }
 
-.cart-box .cart-body .footer-cart{
+.cart-box .footer-cart{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
 
+.cart-box .footer-cart span{
+    font-size: 16px;
+    font-weight: bold ;
+    padding-top: 10px;
 }
 
 .cart-box form .submit-btn-container{
