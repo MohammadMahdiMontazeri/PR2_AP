@@ -49,3 +49,16 @@ def send():
 #     product = Product.objects.get(name=product_name)
 #     if product:
 #         product.count -= 1
+
+@views.route('/admin', methods=['GET','POST'])
+def admin():
+    if request.method == 'POST':
+        product_nammme = request.form.get('pn')
+        product = Products.query.filter_by(product_name=product_nammme).first()
+        print(product, product_nammme)
+        db.session.delete(product)
+        db.session.commit()
+        return redirect(url_for('views.admin'))
+    products = Products.query.all()
+    data = {'products': products}
+    return render_template('admin.html', data=data)
