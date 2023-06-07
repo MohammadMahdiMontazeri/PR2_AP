@@ -19,12 +19,11 @@
                 <div class="nav-right">
                     <a href=""><i class="fa-solid fa-house"></i></a>
                     <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="add-product.html"><i class="fa-solid fa-plus"></i></a>
                 </div>
                 <div class="nav-left">
                     <div class="login">
                         <i class="fa-solid fa-user"></i>
-                        <a href="">ثبت نام / ورود</a>
+                        <a href="admin.html">ورود به پنل ادمین</a>
                     </div>
                 </div>
             </nav>
@@ -57,20 +56,30 @@
             <section class="product">
                 <div class="row">
 
+                    <!-- محصول -->
+                    {% for product in product_data %}
+
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <div class="shoping-card">
                             <div class="img-sec">
-                                <img src="images/pr1.jpeg" alt="">
+                                <!-- لینک عکس -->
+                                <img src="{{product.image}}" alt="">
                             </div>
                             <!-- نام محصول -->
                             <div class="title">
-                                نام محصول
+                                {{product.title}}
                             </div>
                             <div class="buttons">
+                                
                                 <!-- قیمت محصول -->
                                 <div class="right">
-                                    <span class="price">800 هزار تومان</span>
+                                    <span class="price">{{product.price_toman}}</span>
+                                    <span class="price">هزار تومان</span>
+                                    <br>
+                                    <span class="price">{{product.price_dollar}}</span>
+                                    <span class="price">دلار</span>
                                 </div>
+
                                 <div class="left">
                                     <div class="extend-btn">                     
                                         <a class="b-text" href="">خرید</a>
@@ -81,129 +90,8 @@
                         </div>
                     </div>
 
-                    
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="shoping-card">
-                            <div class="img-sec">
-                                <img src="images/pr2.jpeg" alt="">
-                            </div>
-                            <!-- نام محصول -->
-                            <div class="title">
-                                نام محصول
-                            </div>
-                            <div class="buttons">
-                                <!-- قیمت محصول -->
-                                <div class="right">
-                                    <span class="price">800 هزار تومان</span>
-                                </div>
-                                <div class="left">
-                                    <div class="extend-btn">                     
-                                        <a class="b-text" href="">خرید</a>
-                                        <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="shoping-card">
-                            <div class="img-sec">
-                                <img src="images/pr3.jpeg" alt="">
-                            </div>
-                            <!-- نام محصول -->
-                            <div class="title">
-                                نام محصول
-                            </div>
-                            <div class="buttons">
-                                <!-- قیمت محصول -->
-                                <div class="right">
-                                    <span class="price">800 هزار تومان</span>
-                                </div>
-                                <div class="left">
-                                    <div class="extend-btn">                     
-                                        <a class="b-text" href="">خرید</a>
-                                        <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="shoping-card">
-                            <div class="img-sec">
-                                <img src="images/pr4.jpeg" alt="">
-                            </div>
-                            <!-- نام محصول -->
-                            <div class="title">
-                                نام محصول
-                            </div>
-                            <div class="buttons">
-                                <!-- قیمت محصول -->
-                                <div class="right">
-                                    <span class="price">800 هزار تومان</span>
-                                </div>
-                                <div class="left">
-                                    <div class="extend-btn">                     
-                                            <a class="b-text" href="">خرید</a>
-                                            <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="shoping-card">
-                            <div class="img-sec">
-                                <img src="images/pr5.jpeg" alt="">
-                            </div>
-                            <!-- نام محصول -->
-                            <div class="title">
-                                نام محصول
-                            </div>
-                            <div class="buttons">
-                                <!-- قیمت محصول -->
-                                <div class="right">
-                                    <span class="price">800 هزار تومان</span>
-                                </div>
-                                <div class="left">
-                                    <div class="extend-btn">                     
-                                        <a class="b-text" href="">خرید</a>
-                                        <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="shoping-card">
-                            <div class="img-sec">
-                                <img src="images/pr6.jpeg" alt="">
-                            </div>
-                            <!-- نام محصول -->
-                            <div class="title">
-                                نام محصول
-                            </div>
-                            <div class="buttons">
-                                <!-- قیمت محصول -->
-                                <div class="right">
-                                    <span class="price">800 هزار تومان</span>
-                                </div>
-                                <div class="left">
-                                    <div class="extend-btn">                     
-                                        <a class="b-text" href="">خرید</a>
-                                        <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    <!-- پایان -->
 
                 </div>
             </section>
