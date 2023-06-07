@@ -1,11 +1,16 @@
-# import json
-# from urllib.request import urlopen
+import requests
+import json
 
-# with urlopen("https://api.exchangerate-api.com/v4/latest/IRR") as response:
-#     source = response.read()
+url = "https://api.apilayer.com/fixer/latest?symbols=IRR&base=USD"
 
-# data = json.loads(source)
+payload = {}
+headers= {
+  "apikey": "YCHPJImGQ8tJMHtTJ0TxW0vh0Gw7I6SB"
+}
 
-# dollar = 1 / data['rates']['USD']
-dollar = 50000
+response = requests.request("GET", url, headers=headers, data = payload)
 
+status_code = response.status_code
+result = response.text
+data = json.loads(result)
+dollar = data['rates']['IRR']

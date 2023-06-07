@@ -18,7 +18,7 @@ def upload():
         count = 1
         total_toman = count * price_toman
         total_dollar = count * price_dollar
-        new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count,total_toman=total_toman, total_dollar=total_dollar, gdrive_link=gdrive_link)
+        new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count, gdrive_link=gdrive_link)
         db.session.add(new_product)
         db.session.commit()
         return redirect(url_for('views.upload'))
@@ -35,7 +35,7 @@ def send():
             'product_name': pr.product_name,
             'gdrive_link': pr.gdrive_link,
             'price_toman': pr.price_toman,
-            'price_dollar': pr.price_dollar,
+            'price_dollar': pr.price_toman/dollar,
         }
         products.append(prd)
 
@@ -43,7 +43,7 @@ def send():
     data = {'products': products}
     return render_template('index.html', data=data)
 
-# @Views.route('decrese-product', methods=['POST'])
+# @views.route('decrese-product', methods=['POST'])
 # def decrease_product():
 #     product_name = json.loads(request.data('product'))
 #     product = Product.objects.get(name=product_name)
