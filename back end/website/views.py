@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from . import db, create_database
 import json
 from .api import dollar
+from sqlalchemy import func
 
 views = Blueprint('views', __name__)
 
@@ -35,13 +36,36 @@ def send():
             'product_name': pr.product_name,
             'gdrive_link': pr.gdrive_link,
             'price_toman': pr.price_toman,
-            'price_dollar': pr.price_toman/dollar,
+            'price_dollar': round(pr.price_toman/dollar,3),
         }
         products.append(prd)
 
     print(products)
     data = {'products': products}
     return render_template('index.html', data=data)
+
+@views.route('/cart', methods=['GET'])
+def send_cart():
+    cart_obj = Cart.query.all()
+    cart = []
+    for ca in cart_obj:
+        car = {
+            'product_name': ca.product_name,
+            'gdrive_link': ca.gdrive_link,
+            'price_toman': ca.price_toman,
+            'price_dollar': round(ca.price_toman/dollar,3),
+            'count': ca.count,
+            'total_dollar': round(ca.total_toman/dollar,3),
+            'total_toman': ca.total_toman,
+        }
+        cart.append(car)
+    
+    summ = {'sum_toman': db.session.query(func.sum(Cart.total_toman)).scalar(),
+    'sum_dollar': db.session.query(func.sum(Cart.total_dollar)).scalar()}
+    
+
+    dataa = {'cart': cart, 'sum': summ}
+    return render_template('cart.html', dataa=dataa)
 
 # @views.route('decrese-product', methods=['POST'])
 # def decrease_product():

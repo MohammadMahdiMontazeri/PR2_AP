@@ -9,6 +9,8 @@ class Cart(db.Model):
     total_toman = db.Column(db.Integer)
     total_dollar = db.Column(db.Integer)
     gdrive_link = db.Column(db.String(255),nullable=False)
+    sum_dollar = db.Column(db.Integer)
+    sum_toman = db.Column(db.Integer)
 
 class Products(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -54,7 +54,7 @@
                             </tr>
                         </thead>
                         <!-- product -->
-                        {% for product in data.cart %}
+                        {% for product in dataa.cart %}
                         <tbody>
                             <tr class="product-in-cart">
                                 <td class="picture">
@@ -97,22 +97,23 @@
 
                     </table>
                 </div>
-
+                
+                {% if dataa.sum.sum_toman %}
                 <div class="footer-cart">
-
+                    
                     <div class="right">
                         <span>جمع سبد خرید (به تومان) :</span>
-                        <span>{{ product.sum_toman }}</span>
+                        <span>{{ dataa.sum.sum_toman }}</span>
                         <span>هزار تومان</span>
                     </div>
 
                     <din class="left">
-                        <span>{{ product.sum_dollar }}</span>
+                        <span>{{ dataa.sum.sum_dollar }}</span>
                         <span>دلار</span>
                     </din>
 
                 </div>
-                
+                {% endif %}
                 <form action="">
                     <div class="submit-btn-container">
                         <input type="submit" value="نهایی کردن سفارش">
