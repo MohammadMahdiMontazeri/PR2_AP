@@ -115,6 +115,8 @@ header nav .nav-left .login a{
     margin: 10px 15px;
     border-radius: 5px;
     padding: 10px;
+    height: max-content;
+
 }
 
 .shoping-card .img-sec{
