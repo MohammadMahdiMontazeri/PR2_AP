@@ -24,5 +24,28 @@ def upload():
         return redirect(url_for('views.upload'))
     products = Products.query.all()
     data = {'products': products}
-    print(data)
     return render_template('add-product.html', data=data)
+
+@views.route('/index', methods=['GET'])
+def send():
+    products_obj = Products.query.all()
+    products = []
+    for pr in products_obj:
+        prd = {
+            'product_name': pr.product_name,
+            'gdrive_link': pr.gdrive_link,
+            'price_toman': pr.price_toman,
+            'price_dollar': pr.price_dollar,
+        }
+        products.append(prd)
+
+    print(products)
+    data = {'products': products}
+    return render_template('index.html', data=data)
+
+# @Views.route('decrese-product', methods=['POST'])
+# def decrease_product():
+#     product_name = json.loads(request.data('product'))
+#     product = Product.objects.get(name=product_name)
+#     if product:
+#         product.count -= 1
