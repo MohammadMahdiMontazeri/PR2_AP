@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>admin</title>
+        <script src="https://kit.fontawesome.com/06f4ff7068.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/flexboxgrid.css">
+        <link rel="stylesheet" href="css/admin-style.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="nav-right">
+                    <a href="index"><i class="fa-solid fa-house"></i></a>
+                    <a href="add-product"><i class="fa-solid fa-plus"></i></a>
+                </div>
+                    </div>
+                </div>
+                <div class="nav-left">
+                    <div class="condition">
+                        <i class="fa-solid fa-user"></i>
+                        <span href="">پنل ادمین</span>
+                    </div>
+                </div>
+            </nav>
+        </header> 
+
+        <main>
+            <div class="products-container">
+
+                <div class="products-box">
+    
+                    <div class="products-body">
+                        <table class="products">
+                            <thead>
+                                <tr class="head-products">
+                                    <th class="picture">
+                                        <span>عکس محصول</span>                                
+                                    </th>
+                                    <th class="name-product">
+                                        <span>اسم محصول</span>
+                                    </th>
+                                    <th class="remove">
+                                        <span>حذف</span> 
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <!-- product -->
+                            {% for product in data.products %}
+
+                            <tbody>
+                                <tr class="product-in-products">
+                                    <td class="picture">
+                                        <img class="pic-of-product" src="{{ product.gdrive_link }}" alt="">
+                                    </td>
+                                    <td class="name-product">
+                                        <span>{{ product.product_name }}</span>
+                                    <td>
+                                        <form method="POST" action="">
+                                            <div class="submit-btn-container">
+                                                <input type="submit" value="حذف محصول">
+                                                <input name="pn" type="hidden" value="{{ product.product_name }}">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                            <!--  -->
+
+                            <!-- watch -->
+                            {% for watch in data.watchs %}
+
+                            <tbody>
+                                <tr class="product-in-products">
+                                    <td class="picture">
+                                        <img class="pic-of-product" src="{{ watch.gdrive_link }}" alt="">
+                                    </td>
+                                    <td class="name-product">
+                                        <span>{{ watch.watch_name }}</span>
+                                    <td>
+                                        <form action="">
+                                            <div class="submit-btn-container">
+                                                <input type="submit" value="حذف محصول">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                            <!--  -->
+                        </table>
+                    </div>
+                    </div>    
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
