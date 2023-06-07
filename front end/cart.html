@@ -40,31 +40,28 @@
                                 <th class="quantity">
                                     <span>تعداد</span>
                                 </th>
-                                <th class="price-rial">
-                                    <span>قیمت (به تومان)</span>
+                                <th class="price">
+                                    <span>قیمت</span>
                                 </th>
-                                <th class="price-dollar">
-                                    <span>قیمت (به دلار)</span>
+    
+                                <th class="total-price">
+                                    <span>قیمت نهایی</span>
                                 </th>
-                                <th class="total-price-rial">
-                                    <span>قیمت نهایی (به تومان)</span>
-                                </th>
-                                <th class="total-price-dollar">
-                                    <span>قیمت نهایی (به دلار)</span>
-                                </th>
+
                                 <th class="remove">
                                     <span>حذف</span> 
                                 </th>
                             </tr>
                         </thead>
                         <!-- product -->
+                        {% for product in data.cart %}
                         <tbody>
                             <tr class="product-in-cart">
                                 <td class="picture">
-                                    <img class="pic-of-product" src="https://drive.google.com/uc?export=download&id=1BuIdD_yVXAa3u1pQ4ZLKMOiX2lXOAZwI" alt="">
+                                    <img class="pic-of-product" src="{{ product.gdrive_link }}" alt="">
                                 </td>
                                 <td class="name-product">
-                                    <span>ساعت مردانه H320</span>
+                                    <span>{{ product.product_name }}</span>
                                 </td>
                                 <td class="quantity">
                                     <div class="pl-btn" style="display: inline;">
@@ -75,59 +72,27 @@
                                         <a href=""><i class="fa-solid fa-minus"></i></a>
                                     </div>
                                 </td>
-                                <td class="price-rial">
-                                    <span>800 هزار تومان</span>
+                                <td class="price">
+                                    <span>{{ product.price_toman }}</span>
+                                    <span>هزار تومان</span>
+                                    <br>
+                                    <span>{{ product.price_dollar }}</span>
+                                    <span>دلار</span>
                                 </td>
-                                <td class="price-dollar">
-                                    <span>16 دلار</span>
+                                <td class="total-price">
+                                    <span>{{ product.total_toman }}</span>
+                                    <span>هزار تومان</span>
+                                    <br>
+                                    <span>{{ product.total_dollar }}</span>
+                                    <span>دلار</span>
                                 </td>
-                                <td class="total-price-rial">
-                                    <span>800 هزار تومان</span>
-                                </td>
-                                <td class="total-price-dollar">
-                                    <span>16 دلار</span>
-                                </td>
+
                                 <td>
                                     <a href="" class="remove-btn"><i class="fa-solid fa-xmark"></i></a>
                                 </td>
                             </tr>
                         </tbody>
-                        <!--  -->
-                        <!-- product -->
-                        <tbody>
-                            <tr class="product-in-cart">
-                                <td class="picture">
-                                    <img class="pic-of-product" src="https://drive.google.com/uc?export=download&id=14Zd9L1bmgAOtpzgRpFoQXf44IJ0ILok1" alt="">
-                                </td>
-                                <td class="name-product">
-                                    <span>ساعت مردانه H320</span>
-                                </td>
-                                <td class="quantity">
-                                    <div class="pl-btn" style="display: inline;">
-                                        <a href=""><i class="fa-solid fa-plus"></i></a>
-                                    </div>
-                                    <div class="qua" style="display: inline;"><span>1</span></div>
-                                    <div class="mi-btn" style="display: inline;">
-                                        <a href=""><i class="fa-solid fa-minus"></i></a>
-                                    </div>
-                                </td>
-                                <td class="price-rial">
-                                    <span>800 هزار تومان</span>
-                                </td>
-                                <td class="price-dollar">
-                                    <span>16 دلار</span>
-                                </td>
-                                <td class="total-price-rial">
-                                    <span>800 هزار تومان</span>
-                                </td>
-                                <td class="total-price-dollar">
-                                    <span>16 دلار</span>
-                                </td>
-                                <td>
-                                    <a href="" class="remove-btn"><i class="fa-solid fa-xmark"></i></a>
-                                </td>
-                            </tr>
-                        </tbody>
+                        {% endfor %}
                         <!--  -->
 
                     </table>
@@ -136,16 +101,15 @@
                 <div class="footer-cart">
 
                     <div class="right">
-                        <span>جمع سبد خرید (به تومان):</span>
-                        <span>800 هزار تومان</span>
+                        <span>جمع سبد خرید (به تومان) :</span>
+                        <span>{{ product.sum_toman }}</span>
+                        <span>هزار تومان</span>
                     </div>
 
                     <din class="left">
-                        <span>جمع سبد خرید (به دلار):</span>
-                        <span>16 دلار</span>
+                        <span>{{ product.sum_dollar }}</span>
+                        <span>دلار</span>
                     </din>
- 
-               
 
                 </div>
                 
