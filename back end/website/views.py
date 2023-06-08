@@ -8,24 +8,7 @@ from sqlalchemy import func
 
 views = Blueprint('views', __name__)
 
-@views.route('/add-product', methods=['GET','POST'])
-def upload():
-    if request.method == 'POST':
-        product_name = request.form.get('productName')
-        price_toman = request.form.get('priceToman')
-        price_toman = int(price_toman)
-        gdrive_link = request.form.get('gdriveLink')
-        price_dollar = price_toman / dollar
-        count = 1
-        total_toman = count * price_toman
-        total_dollar = count * price_dollar
-        new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count, gdrive_link=gdrive_link)
-        db.session.add(new_product)
-        db.session.commit()
-        return redirect(url_for('views.upload'))
-    products = Products.query.all()
-    data = {'products': products}
-    return render_template('add-product.html', data=data)
+
 
 @views.route('/index', methods=['GET'])
 def send():
@@ -67,16 +50,11 @@ def send_cart():
     dataa = {'cart': cart, 'sum': summ}
     return render_template('cart.html', dataa=dataa)
 
-# @views.route('decrese-product', methods=['POST'])
-# def decrease_product():
-#     product_name = json.loads(request.data('product'))
-#     product = Product.objects.get(name=product_name)
-#     if product:
-#         product.count -= 1
 
-@views.route('/admin', methods=['GET','POST'])
+
+@views.route('/admin', methods=['GET','POST','DELETE'])
 def admin():
-    if request.method == 'POST':
+    if request.method == 'DELETE':
         product_nammme = request.form.get('pn')
         product = Products.query.filter_by(product_name=product_nammme).first()
         print(product, product_nammme)
@@ -86,3 +64,50 @@ def admin():
     products = Products.query.all()
     data = {'products': products}
     return render_template('admin.html', data=data)
+
+@views.route('/add-product', methods=['GET','POST'])
+def upload():
+    if request.method == 'POST':
+        product_name = request.form.get('productName')
+        price_toman = request.form.get('priceToman')
+        price_toman = int(price_toman)
+        gdrive_link = request.form.get('gdriveLink')
+        price_dollar = price_toman / dollar
+        count = 1
+        total_toman = count * price_toman
+        total_dollar = count * price_dollar
+        new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count, gdrive_link=gdrive_link)
+        db.session.add(new_product)
+        db.session.commit()
+        return redirect(url_for('views.upload'))
+    products = Products.query.all()
+    data = {'products': products}
+    return render_template('add-product.html', data=data)
+
+
+@views.route('/add-to-cart', methods=['POST'])
+def addCart():
+    product_name = request.form.get('productName')
+    product = Product.objects.get(name=product_name)
+    new_cart_product = Cart(product_name=Product.product_name, price_toman=Product.price_toman, price_dollar=Product.price_dollar, count=Product.count, gdrive_link=Product.gdrive_link)
+    db.session.add(new_cart_product)
+    db.session.commit()
+    return redirect(url_for('views.index'))
+
+
+@views.route('decrese-product', methods=['POST'])
+def decrease_product():
+    product_name = json.loads(request.data('product'))
+    product = Product.objects.get(name=product_name)
+    
+    db.session.delete(product)
+    if product and product.count > 1:
+        product.count -= 1
+
+
+@views.route('increase-product', methods=['POST'])
+def increase_product():
+    product_name = json.loads(request.data('product'))
+    product = Product.objects.get(name=product_name)
+    if product:
+        product.count += 1
