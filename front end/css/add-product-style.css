@@ -87,3 +87,10 @@ header nav .nav-right a{
 .form-img-container img{
     width: 100%;
 }
+
+.input-group-dadio{
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+    margin-bottom: 25px;
+}
