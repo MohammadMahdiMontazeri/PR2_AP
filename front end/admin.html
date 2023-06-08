@@ -30,9 +30,7 @@
 
         <main>
             <div class="products-container">
-
                 <div class="products-box">
-    
                     <div class="products-body">
                         <table class="products">
                             <thead>
@@ -48,10 +46,7 @@
                                     </th>
                                 </tr>
                             </thead>
-
-                            <!-- product -->
                             {% for product in data.products %}
-
                             <tbody>
                                 <tr class="product-in-products">
                                     <td class="picture">
@@ -60,44 +55,21 @@
                                     <td class="name-product">
                                         <span>{{ product.product_name }}</span>
                                     <td>
-                                        <form method="POST" action="">
-                                            <div class="submit-btn-container">
-                                                <input type="submit" value="حذف محصول">
-                                                <input name="pn" type="hidden" value="{{ product.product_name }}">
-                                            </div>
-                                        </form>
+                                        <div class="submit-btn-container">
+                                            <button id="remove-product" data-product-id="{{ product.product_name }}">حذف محصول</button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
                             {% endfor %}
-                            <!--  -->
-
-                            <!-- watch -->
-                            {% for watch in data.watchs %}
-
-                            <tbody>
-                                <tr class="product-in-products">
-                                    <td class="picture">
-                                        <img class="pic-of-product" src="{{ watch.gdrive_link }}" alt="">
-                                    </td>
-                                    <td class="name-product">
-                                        <span>{{ watch.watch_name }}</span>
-                                    <td>
-                                        <form action="">
-                                            <div class="submit-btn-container">
-                                                <input type="submit" value="حذف محصول">
-                                            </div>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            {% endfor %}
-                            <!--  -->
                         </table>
                     </div>
                     </div>    
                 </div>
             </div>
         </main>
+        {% block javascript %}
+        <script src="java script/main.js"></script>
+        {% endblock %}
     </body>
 </html>

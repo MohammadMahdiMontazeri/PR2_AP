@@ -119,3 +119,16 @@ def increase_product():
     product = Products.objects.get(name=product_name)
     if product:
         product.count += 1
+
+
+@views.route("/remove-product", methods=["POST"])
+def remove_product():
+  data = json.loads(request.data)
+  product_name = data["productName"]
+  product_item = Products.query.filter_by(product_name=product_name).first()
+  if product_item:
+    db.session.delete(product_item)
+    db.session.commit()
+    return jsonify({"success": True})
+  else:
+    return jsonify({"success": False})

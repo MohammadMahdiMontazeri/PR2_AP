@@ -113,11 +113,11 @@ header nav .nav-left .condition span{
     border-radius: 75px;
 }
   
-.products-box form .submit-btn-container{
+.products-box .submit-btn-container{
     text-align: center;
 }
 
-.products-box form .submit-btn-container input{
+.products-box .submit-btn-container button{
     border: none;
     border-radius: 35px;
     background-color: rgb(85, 26, 158);
@@ -127,7 +127,7 @@ header nav .nav-left .condition span{
     cursor: pointer;
 }
 
-.products-box form .submit-btn-container input:hover{
+.products-box .submit-btn-container button:hover{
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.4);
 }
 
