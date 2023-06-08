@@ -20,6 +20,7 @@ def send():
             'gdrive_link': pr.gdrive_link,
             'price_toman': pr.price_toman,
             'price_dollar': round(pr.price_toman/dollar,3),
+            'type_product': pr.type_product,
         }
         products.append(prd)
 
@@ -76,7 +77,13 @@ def upload():
         count = 1
         total_toman = count * price_toman
         total_dollar = count * price_dollar
-        new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count, gdrive_link=gdrive_link)
+        type_product = 0
+        if request.form.get('myCheckbox') == 1:
+            type_product = 1
+        if type_product == 0:
+            new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count, gdrive_link=gdrive_link, type_product=0)
+        elif type_product == 1:
+            new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count, gdrive_link=gdrive_link, type_product=1)
         db.session.add(new_product)
         db.session.commit()
         return redirect(url_for('views.upload'))

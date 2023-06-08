@@ -19,5 +19,4 @@ class Products(db.Model):
     price_dollar = db.Column(db.Integer)
     count = db.Column(db.Integer)
     gdrive_link = db.Column(db.String(255),nullable=False)
-    
-
+    type_product = db.Column(db.Integer)
