@@ -19,48 +19,10 @@ setInterval (()=>{
 } , 4500)
 
 
-// function addToCart(productName){
-//     fetch('add-to-cart',{
-//         method:'POST',
-//         body: JSON.stringify({ productName: productName})
-//     }).then((_res) => {
-//         window.location.href = "/" ;
-//     })
-// }
-
-// function inPro(productName){
-//     fetch('increase-product',{
-//         method:'POST',
-//         body: JSON.stringify({ productName: productName})
-//     }).then((_res) => {
-//         window.location.href = "/" ;
-//     })
-// }
-
-// function dePro(productName){
-//     fetch('decrease-product',{
-//         method:'POST',
-//         body: JSON.stringify({ productName: productName})
-//     }).then((_res) => {
-//         window.location.href = "/" ;
-//     })
-// }
-
-// function removeProduct(productName){
-//     fetch('admin',{
-//         method:'DELETE',
-//         body: JSON.stringify({ productName: productName})
-//     }).then((_res) => {
-//         window.location.href = "/" ;
-//     })
-// }
-
-var button = document.getElementById("remove-product");
-
+var button = document.getElementById("add-to-cart");
 button.addEventListener("click", function() {
   var productName = button.getAttribute("data-product-id");
-
-  fetch("/remove-product", {
+  fetch("/add-to-cart", {
     method: "POST",
     body: JSON.stringify({ productName: productName })
   }).then((_res) => {
