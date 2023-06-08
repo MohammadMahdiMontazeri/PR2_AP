@@ -62,19 +62,11 @@ header nav .nav-left .login a{
 
 .slider .slides .item img{
     width: 100%;
-    height: 540px;
+    height: 650px;
 
 
 }
 
-.slider .slides .item span{
-    position: absolute;
-    right: 10%;
-    top: 40%;
-    font-size: 1.5em;
-    color: #222;
-
-}
 
 .slider .slides .active{
     display: block;

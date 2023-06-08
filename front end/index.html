@@ -31,15 +31,15 @@
                 <div class="slides">
                     <div class="item active" id="slide1">
                         <img src="images/s1.jpg" alt="">
-                        <span>متن اسلاید یک</span>
+                        
                     </div>
                     <div class="item" id="slide2">
                         <img src="images/s2.jpg" alt="">
-                        <span style="color: aliceblue;">متن اسلاید دو</span>
+                        
                     </div>
                     <div class="item" id="slide3">
                         <img src="images/s3.jpg" alt="">
-                        <span >متن اسلاید سه</span>
+                        
                     </div>
 
                 </div>
@@ -58,38 +58,39 @@
 
                     <!-- محصول -->
                     {% for product in data.products %}
-
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="shoping-card">
-                            <div class="img-sec">
-                                <!-- لینک عکس -->
-                                <img src="{{ product.gdrive_link }}" alt="">
-                            </div>
-                            <!-- نام محصول -->
-                            <div class="title">
-                                {{ product.product_name }}
-                            </div>
-                            <div class="buttons">
-
-                                <!-- قیمت محصول -->
-                                <div class="right">
-                                    <span class="price">{{ product.price_toman }}</span>
-                                    <span class="price">هزار تومان</span>
-                                    <br>
-                                    <span class="price">{{ product.price_dollar }}</span>
-                                    <span class="price">دلار</span>
+                        {% if product.type_product == "clothing" %}
+                    
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="shoping-card">
+                                <div class="img-sec">
+                                    <!-- لینک عکس -->
+                                    <img src="{{ product.gdrive_link }}" alt="">
                                 </div>
+                                <!-- نام محصول -->
+                                <div class="title">
+                                    {{ product.product_name }}
+                                </div>
+                                <div class="buttons">
 
-                                <div class="left">
-                                    <div class="extend-btn">                     
-                                        <a class="b-text" href="">خرید</a>
-                                        <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                                    <!-- قیمت محصول -->
+                                    <div class="right">
+                                        <span class="price">{{ product.price_toman }}</span>
+                                        <span class="price">هزار تومان</span>
+                                        <br>
+                                        <span class="price">{{ product.price_dollar }}</span>
+                                        <span class="price">دلار</span>
+                                    </div>
+
+                                    <div class="left">
+                                        <div class="extend-btn" onclick="addToCart">                     
+                                            <a class="b-text" href="">خرید</a>
+                                            <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                        {% endif %}
                     {% endfor %}
                     <!-- پایان -->
 
@@ -105,39 +106,41 @@
                 <div id="owl-product" class="owl-carousel owl-theme">
 
                     <!-- محصول -->
-                    {% for watch in data.watchs %}
+                    {% for product in data.products %}
+                        {% if product.type_product == "watch" %}
 
-                    <div class="item">
-                        <div class="shoping-card">
-                            <div class="img-sec">
-                                <!-- لینک عکس -->
-                                <img src="{{ watch.gdrive_link }}" alt="">
-                            </div>
-                            <!-- نام محصول -->
-                            <div class="title">
-                                {{ watch.watch_name }}
-                            </div>
-                            <div class="buttons">
-
-                                <!-- قیمت محصول -->
-                                <div class="right">
-                                    <span class="price">{{ watch.price_toman }}</span>
-                                    <span class="price">هزار تومان</span>
-                                    <br>
-                                    <span class="price">{{ watch.price_dollar }}</span>
-                                    <span class="price">دلار</span>
-                                    
+                        <div class="item">
+                            <div class="shoping-card">
+                                <div class="img-sec">
+                                    <!-- لینک عکس -->
+                                    <img src="{{ product.gdrive_link }}" alt="">
                                 </div>
-                                <div class="left">
-                                    <div class="extend-btn">                     
-                                        <a class="b-text" href="">خرید</a>
-                                        <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                                <!-- نام محصول -->
+                                <div class="title">
+                                    {{ product.product_name }}
+                                </div>
+                                <div class="buttons">
+
+                                    <!-- قیمت محصول -->
+                                    <div class="right">
+                                        <span class="price">{{ product.price_toman }}</span>
+                                        <span class="price">هزار تومان</span>
+                                        <br>
+                                        <span class="price">{{ product.price_dollar }}</span>
+                                        <span class="price">دلار</span>
+                                        
+                                    </div>
+                                    <div class="left">
+                                        <div class="extend-btn" onclick="addToCart">                     
+                                            <a class="b-text" href="">خرید</a>
+                                            <a class= "b-icon" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                        
+                        {% endif %}
                     {% endfor %}
                     <!-- پایان -->
                  
@@ -146,9 +149,11 @@
             </section>
             
         </main>
+        {% block javascript %}
         <script src="java script/main.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
         <script src="java script/jquery.js"></script>
         <script src="java script/owl.carousel.min.js"></script>
+        {% endblock %}
     </body>
 </html>
