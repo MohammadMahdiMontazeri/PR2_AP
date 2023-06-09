@@ -203,3 +203,8 @@ header nav .nav-left .login a{
     border-bottom: 2px solid #e74c3c;
     border-radius: 8px;
 }
+
+.draggable-list .title2{
+    padding: 20px 0px 20px 0px;
+    font-size : 0.98em
+}
