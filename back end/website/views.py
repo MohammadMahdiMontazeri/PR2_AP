@@ -19,7 +19,7 @@ def send():
             'product_name': pr.product_name,
             'gdrive_link': pr.gdrive_link,
             'price_toman': pr.price_toman,
-            'price_dollar': round(pr.price_toman/dollar,3),
+            'price_dollar': round(pr.price_toman/dollar,2),
             'type_product': pr.type_product,
         }
         products.append(prd)
