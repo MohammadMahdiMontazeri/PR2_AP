@@ -36,15 +36,18 @@ def send_cart():
             'product_name': ca.product_name,
             'gdrive_link': ca.gdrive_link,
             'price_toman': ca.price_toman,
-            'price_dollar': round(ca.price_toman/dollar,3),
+            'price_dollar': round(ca.price_toman/dollar,2),
             'count': ca.count,
-            'total_dollar': round(ca.total_toman/dollar,3),
+            'total_dollar': round(ca.total_toman/dollar,2),
             'total_toman': ca.total_toman,
         }
         cart.append(car)
-    
-    summ = {'sum_toman': round(db.session.query(func.sum(Cart.total_toman)).scalar(),2),
-    'sum_dollar': round(db.session.query(func.sum(Cart.total_dollar)).scalar(),2)}
+    if db.session.query(func.sum(Cart.total_toman)).scalar() == None:
+        summ = {'sum_toman':db.session.query(func.sum(Cart.total_toman)).scalar(),
+        'sum_dollar': db.session.query(func.sum(Cart.total_dollar)).scalar()}
+    else:
+        summ = {'sum_toman': round(db.session.query(func.sum(Cart.total_toman)).scalar(),2),
+        'sum_dollar': round(db.session.query(func.sum(Cart.total_dollar)).scalar(),2)}
     
 
     dataa = {'cart': cart, 'sum': summ}
