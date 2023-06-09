@@ -24,6 +24,7 @@
         <div class="cart-container">
             <div class="cart-box">
                 <div class="cart-body">
+                    {% if dataa.sum.sum_toman %}
                     <table class="cart">
                         <thead>
                             <tr class="head-cart">
@@ -89,7 +90,6 @@
                         {% endfor %}
                     </table>
                 </div>                
-                {% if dataa.sum.sum_toman %}
                 <div class="footer-cart">                    
                     <div class="right">
                         <span>جمع سبد خرید (به تومان) :</span>
@@ -101,12 +101,19 @@
                         <span>دلار</span>
                     </din>
                 </div>
-                {% endif %}
                 <form action="">
                     <div class="submit-btn-container">
                         <input type="submit" value="نهایی کردن سفارش">
                     </div>
-                </form>            
+                </form>   
+                {% endif %}
+                {% if not dataa.sum.sum_toman %}
+                <div class="footer-cart">                    
+                    <div class="right">
+                        <span id="empty-cart">سبد خرید شما خالی است.</span>
+                    </div>
+                </div>
+                {% endif %}  
             </div>
         </div>
     </main>

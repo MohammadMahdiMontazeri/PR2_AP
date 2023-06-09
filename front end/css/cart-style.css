@@ -164,3 +164,7 @@ header nav .nav-right a{
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.4);
 }
 
+#empty-cart{
+    display: block;
+    margin-bottom: 30px;
+}
