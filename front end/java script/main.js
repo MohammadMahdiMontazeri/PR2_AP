@@ -19,13 +19,12 @@ setInterval (()=>{
 } , 4500)
 
 
-var button = document.getElementById("add-to-cart");
-button.addEventListener("click", function() {
-  var productName = button.getAttribute("data-product-id");
+function addToCart(productName) {
   fetch("/add-to-cart", {
     method: "POST",
     body: JSON.stringify({ productName: productName })
   }).then((_res) => {
     window.location.reload();
   });
-});
+};
+

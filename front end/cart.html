@@ -57,12 +57,12 @@
                                     <span>{{ product.product_name }}</span>
                                 </td>
                                 <td class="quantity">
-                                    <button id="in-count" data-product-id="{{ product.product_name }}">
-                                        <i class="fa-solid fa-plus"></i>
+                                    <button data-product-id="{{ product.product_name }}" >
+                                        <i class="fa-solid fa-plus" onclick="inCount('{{ product.product_name}}')"></i>
                                     </button>                                
                                     <span>{{ product.count }}</span>
-                                    <button id="de-count" data-product-id="{{ product.product_name }}">
-                                        <i class="fa-solid fa-minus"></i>
+                                    <button  data-product-id="{{ product.product_name }}" >
+                                        <i class="fa-solid fa-minus" onclick="deCount('{{ product.product_name}}')"></i>
                                     </button>                
                                 </td>
                                 <td class="price">
@@ -81,7 +81,7 @@
                                 </td>
                                 <td class="remove-btn">
                                     <button id="remove-from-cart" data-product-id="{{ product.product_name }}">
-                                        <i class="fa-solid fa-xmark"></i>
+                                        <i class="fa-solid fa-xmark" onclick="rmProduct('{{ product.product_name}}')"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -111,41 +111,33 @@
         </div>
     </main>
     {% block javascript %}
-    <script>
+    <script >
+        function deCount(productName) {
+  fetch("/de-count", {
+    method: "POST",
+    body: JSON.stringify({ productName: productName })
+  }).then((_res) => {
+    window.location.reload();
+  });
+};
 
-       var button = document.getElementById("remove-from-cart");
-        button.addEventListener("click", function() {
-        var productName = button.getAttribute("data-product-id");
-        fetch("/remove-from-cart", {
-            method: "POST",
-            body: JSON.stringify({ productName: productName })
-        }).then((_res) => {
-            window.location.reload();
-        });
-        });
+function inCount(productName) {
+  fetch("/in-count", {
+    method: "POST",
+    body: JSON.stringify({ productName: productName })
+  }).then((_res) => {
+    window.location.reload();
+  });
+};
 
-        var button = document.getElementById("in-count");
-        button.addEventListener("click", function() {
-        var productName = button.getAttribute("data-product-id");
-        fetch("/in-count", {
-            method: "POST",
-            body: JSON.stringify({ productName: productName })
-        }).then((_res) => {
-            window.location.reload();
-        });
-        });
-
-        var button = document.getElementById("de-count");
-        button.addEventListener("click", function() {
-        var productName = button.getAttribute("data-product-id");
-        fetch("/de-count", {
-            method: "POST",
-            body: JSON.stringify({ productName: productName })
-        }).then((_res) => {
-            window.location.reload();
-        });
-        });
-
+function rmProduct(productName) {
+  fetch("/remove-from-cart", {
+    method: "POST",
+    body: JSON.stringify({ productName: productName })
+  }).then((_res) => {
+    window.location.reload();
+  });
+};
     </script>
     {% endblock %}
     </body>

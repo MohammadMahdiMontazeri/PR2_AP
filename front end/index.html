@@ -68,7 +68,7 @@
                                             <span class="price">دلار</span>
                                         </div>
                                         <div class="left">
-                                            <button id="add-to-cart" data-product-id="{{ product.product_name }}">
+                                            <button id="{{  product.id }}" data-product-id="{{ product.product_name }}" onclick="addToCart('{{ product.product_name }}')">
                                                 <span class="b-text">خرید</span>        
                                                 <i id="b-icon" class="fa-solid fa-cart-shopping"></i>
                                             </button>
@@ -104,7 +104,7 @@
                                             <span class="price">دلار</span>
                                         </div>
                                         <div class="left">
-                                            <button id="add-to-cart" data-product-id="{{ product.product_name }}">
+                                            <button id="add-to-cart" data-product-id="{{ product.product_name }}" onclick="addToCart('{{ product.product_name }}')">
                                                 <span class="b-text">خرید</span>        
                                                 <i id="b-icon" class="fa-solid fa-cart-shopping"></i>
                                             </button>

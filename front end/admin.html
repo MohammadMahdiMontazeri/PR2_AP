@@ -54,8 +54,8 @@
                                     <td class="name-product">
                                         <span>{{ product.product_name }}</span>
                                     <td>
-                                        <div class="submit-btn-container">
-                                            <button id="remove-product" data-product-id="{{ product.product_name }}">حذف محصول</button>
+                                        <div class="submit-btn-container" method="POST">
+                                            <button id="{{ product.id }}" data-product-id="{{ product.product_name }}" onclick="removeProduct('{{ product.product_name }}')">حذف محصول</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -70,17 +70,17 @@
         {% block javascript %}
         <script>
 
-           var button = document.getElementById("remove-product");
-            button.addEventListener("click", function() {
-            var productName = button.getAttribute("data-product-id");
-            fetch("/remove-product", {
-                method: "POST",
-                body: JSON.stringify({ productName: productName })
-            }).then((_res) => {
-                window.location.reload();
-            });
-            });
 
+
+            function removeProduct(product_name) {
+
+                fetch('/remove-product', {
+        method:'POST',
+        body: JSON.stringify({ product_name: product_name})
+    }).then((_res) => {
+        window.location.href = '/admin';
+    });
+    }
         </script>
         {% endblock %}
     </body>

@@ -1,5 +1,3 @@
-
-
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from .models import Cart, Products
 from werkzeug.utils import secure_filename
@@ -45,8 +43,8 @@ def send_cart():
         }
         cart.append(car)
     
-    summ = {'sum_toman': db.session.query(func.sum(Cart.total_toman)).scalar(),
-    'sum_dollar': db.session.query(func.sum(Cart.total_dollar)).scalar()}
+    summ = {'sum_toman': round(db.session.query(func.sum(Cart.total_toman)).scalar(),2),
+    'sum_dollar': round(db.session.query(func.sum(Cart.total_dollar)).scalar(),2)}
     
 
     dataa = {'cart': cart, 'sum': summ}
@@ -54,14 +52,8 @@ def send_cart():
 
 
 
-@views.route('/admin', methods=['GET','POST','DELETE'])
+@views.route('/admin', methods=['GET'])
 def admin():
-    if request.method == 'DELETE':
-        product_nammme = request.form.get('pn')
-        product = Products.query.filter_by(product_name=product_nammme).first()
-        db.session.delete(product)
-        db.session.commit()
-        return redirect(url_for('views.admin'))
     products = Products.query.all()
     data = {'products': products}
     return render_template('admin.html', data=data)
@@ -96,16 +88,22 @@ def upload():
 
 @views.route("/remove-product", methods=["POST"])
 def remove_product():
-  data = json.loads(request.data)
-  product_name = data["productName"]
-  product_item = Products.query.filter_by(product_name=product_name).first()
-  if product_item:
-    db.session.delete(product_item)
-    db.session.commit()
-    return jsonify({"success": True})
-  else:
-    return jsonify({"success": False})
+        data = json.loads(request.data)
+        product_name = data["product_name"]
+        print(product_name)
+        product = Products.query.filter_by(product_name=product_name).first()
+        if product:
+            try:
+                in_cart = Cart.query.filter_by(product_name=product_name).first()
+                db.session.delete(in_cart)
+                db.commit()
+            except:
+                pass
+            db.session.delete(product)
+            db.session.commit()
+        return redirect(url_for('views.admin'))
   
+
 @views.route("/add-to-cart", methods=["POST"])
 def add_to_cart():
   data = json.loads(request.data)
@@ -114,9 +112,11 @@ def add_to_cart():
   product_cart = Cart.query.filter_by(product_name=product_name).first()
   if product:
       if product_cart:
-         product_cart.count +=1
-         db.session.commit()
-         return jsonify({"success": True})
+          product_cart.count +=1
+          total_toman = count * price_toman
+          total_dollar = count * price_dollar
+          db.session.commit()
+          return jsonify({"success": True})
       else:
         price_toman = product.price_toman
         gdrive_link = product.gdrive_link
@@ -131,6 +131,7 @@ def add_to_cart():
   else:
     return jsonify({"success": False})
   
+
 @views.route("/remove-from-cart", methods=["POST"])
 def remove_from_cart():
   data = json.loads(request.data)
@@ -143,6 +144,7 @@ def remove_from_cart():
   else:
     return jsonify({"success": False})
   
+
 @views.route("/in-count", methods=["POST"])
 def in_count():
   data = json.loads(request.data)
@@ -151,19 +153,24 @@ def in_count():
   if product_item:
     print(product_item.count)
     product_item.count += 1
-    product_item.count
+    product_item.total_toman = product_item.price_toman * product_item.count
+    product_item.total_dollar = product_item.price_dollar * product_item.count
     db.session.commit()
     return jsonify({"success": True})
   else:
     return jsonify({"success": False})
   
+
 @views.route("/de-count", methods=["POST"])
 def de_count():
   data = json.loads(request.data)
   product_name = data["productName"]
   product_item = Cart.query.filter_by(product_name=product_name).first()
   if product_item and product_item.count > 1:
+    print(product_item.count)
     product_item.count -= 1
+    product_item.total_toman = product_item.price_toman * product_item.count
+    product_item.total_dollar = product_item.price_dollar * product_item.count
     db.session.commit()
     return jsonify({"success": True})
   else:
