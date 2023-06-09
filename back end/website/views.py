@@ -116,8 +116,8 @@ def add_to_cart():
   if product:
       if product_cart:
           product_cart.count +=1
-          total_toman = count * price_toman
-          total_dollar = count * price_dollar
+          product_cart.total_toman = product_cart.count * product_cart.price_toman
+          product_cart.total_dollar = product_cart.count * product_cart.price_dollar
           db.session.commit()
           return jsonify({"success": True})
       else:
