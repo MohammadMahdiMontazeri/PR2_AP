@@ -20,44 +20,34 @@
                 </div>
             </nav>
         </header>    
-
         <main>
             <div class="form-container">
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <div class="form-box">
-                            <form action="/add-product" method="POST">
-                                
+                            <form action="/add-product" method="POST">    
                                 <div class="input-group">
                                      <label for="">نام محصول:</label>
                                      <input name="productName" type="text">
                                 </div>
-
                                 <div class="input-group">
                                     <label for="">قیمت محصول (به تومان):</label>
                                     <input name="priceToman" type="text">
                                </div>
-
                                 <div class="input-group">
                                     <label for="">لینک تصویر محصول:</label>
                                     <input name="gdriveLink"type="text">
                                 </div>
-
                                 <div class="input-group-checkbox">
-                                    <div>
-                                        
-                                        <input type="checkbox" value="1" name="myCheckbox">
-                                        <label for="clothing">محصول به قسمت <span>ساعت ها</span> اضافه شود ؟</label>
-
-                                    </div>
-                                    
-                                </div>
-                            
+                                    <div>                 
+                                        <input type="checkbox" value="1" name="myCheckbox" id="myCheckbox">
+                                        <label for="myCheckbox">محصول به قسمت <span>ساعت ها</span> اضافه شود ؟</label>
+                                    </div>       
+                                </div>        
                                 <div class="submit-btn-container">
                                     <input type="submit" value="ثبت محصول">
                                 </div>
                             </form>
-
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">

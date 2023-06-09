@@ -20,13 +20,9 @@
                 </div>
             </nav>
         </header> 
-
     <main>
-
         <div class="cart-container">
-
             <div class="cart-box">
-
                 <div class="cart-body">
                     <table class="cart">
                         <thead>
@@ -43,17 +39,14 @@
                                 <th class="price">
                                     <span>قیمت</span>
                                 </th>
-    
                                 <th class="total-price">
                                     <span>قیمت نهایی</span>
                                 </th>
-
                                 <th class="remove">
                                     <span>حذف</span> 
                                 </th>
                             </tr>
                         </thead>
-                        <!-- product -->
                         {% for product in dataa.cart %}
                         <tbody>
                             <tr class="product-in-cart">
@@ -64,74 +57,58 @@
                                     <span>{{ product.product_name }}</span>
                                 </td>
                                 <td class="quantity">
-                                    <div class="pl-btn" style="display: inline;">
-                                        <button id="in-count" data-product-id="{{ product.product_name }}">+</button>
-                                        <!-- <a href=""><i class="fa-solid fa-plus"></i></a> -->
-                                    </div>
-                                    <div class="qua" style="display: inline;"><span>{{ product.count }}</span></div>
-
-                                    <div class="mi-btn" style="display: inline;">
-                                        <button id="de-count" data-product-id="{{ product.product_name }}">-</button>
-                                        <!-- <a href=""><i class="fa-solid fa-minus"></i></a> -->
-                                        
-                                    </div>
+                                    <button id="in-count" data-product-id="{{ product.product_name }}">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>                                
+                                    <span>{{ product.count }}</span>
+                                    <button id="de-count" data-product-id="{{ product.product_name }}">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>                
                                 </td>
                                 <td class="price">
                                     <span>{{ product.price_toman }}</span>
-                                    <span>هزار تومان</span>
+                                    <span> تومان</span>
                                     <br>
                                     <span>{{ product.price_dollar }}</span>
                                     <span>دلار</span>
                                 </td>
                                 <td class="total-price">
                                     <span>{{ product.total_toman }}</span>
-                                    <span>هزار تومان</span>
+                                    <span> تومان</span>
                                     <br>
                                     <span>{{ product.total_dollar }}</span>
                                     <span>دلار</span>
                                 </td>
-
-                                <td>
-                                    <div class="remove-btn">
-                                        <button id="remove-from-cart" data-product-id="{{ product.product_name }}">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </button>
-                                    </div>
-                                    
+                                <td class="remove-btn">
+                                    <button id="remove-from-cart" data-product-id="{{ product.product_name }}">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
                         {% endfor %}
-                        <!--  -->
-
                     </table>
-                </div>
-                
+                </div>                
                 {% if dataa.sum.sum_toman %}
-                <div class="footer-cart">
-                    
+                <div class="footer-cart">                    
                     <div class="right">
                         <span>جمع سبد خرید (به تومان) :</span>
                         <span>{{ dataa.sum.sum_toman }}</span>
-                        <span>هزار تومان</span>
+                        <span> تومان</span>
                     </div>
-
                     <din class="left">
                         <span>{{ dataa.sum.sum_dollar }}</span>
                         <span>دلار</span>
                     </din>
-
                 </div>
                 {% endif %}
                 <form action="">
                     <div class="submit-btn-container">
                         <input type="submit" value="نهایی کردن سفارش">
                     </div>
-                </form>
-                
+                </form>            
             </div>
         </div>
-
     </main>
     {% block javascript %}
     <script>
