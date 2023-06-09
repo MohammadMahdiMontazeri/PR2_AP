@@ -9,19 +9,21 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/home-style.css">
         <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/flexboxgrid.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/owl.theme.default.min.css">
     </head>
     <body>
         <header>
             <nav>
                 <div class="nav-right">
-                    <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href=""><i class="fa-solid fa-house"></i></a>
-                    <a href=""><i class="fa-solid fa-plus"></i></a>
+                    <a href="index"><i class="fa-solid fa-house"></i></a>
+                    <a href="cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
                 <div class="nav-left">
                     <div class="login">
                         <i class="fa-solid fa-user"></i>
-                        <a href="#">ثبت نام / ورود</a>
+                        <a href="admin">ورود به پنل ادمین</a>
                     </div>
                 </div>
             </nav>
@@ -29,28 +31,97 @@
                 <div class="slides">
                     <div class="item active" id="slide1">
                         <img src="images/s1.jpg" alt="">
-                        <span>متن اسلاید یک</span>
                     </div>
                     <div class="item" id="slide2">
-                        <img src="images/s2.jpg" alt="">
-                        <span style="color: aliceblue;">متن اسلاید دو</span>
+                        <img src="images/s2.jpg" alt="">   
                     </div>
                     <div class="item" id="slide3">
-                        <img src="images/s3.jpg" alt="">
-                        <span >متن اسلاید سه</span>
+                        <img src="images/s3.jpg" alt="">    
                     </div>
-
                 </div>
                 <div class="buttons">
                     <i onclick="setSlide('slide1' , 1)" class="fa-solid fa-circle"></i>
                     <i onclick="setSlide('slide2' , 2)" class="fa-solid fa-circle"></i>
                     <i onclick="setSlide('slide3' , 3)" class="fa-solid fa-circle"></i>
                 </div>
-
             </section>
         </header>
-
-
+        <main>
+            <section class="product">
+                <div class="row">
+                    {% for product in data.products %}
+                        {% if product.type_product == 0 %}               
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                <div class="shoping-card">
+                                    <div class="img-sec">
+                                        <img src="{{ product.gdrive_link }}" alt="">
+                                    </div>
+                                    <div class="title">
+                                        {{ product.product_name }}
+                                    </div>
+                                    <div class="buttons">
+                                        <div class="right">
+                                            <span class="price">{{ product.price_toman }}</span>
+                                            <span class="price"> تومان</span>
+                                            <br>
+                                            <span class="price">{{ product.price_dollar }}</span>
+                                            <span class="price">دلار</span>
+                                        </div>
+                                        <div class="left">
+                                            <button id="{{  product.id }}" data-product-id="{{ product.product_name }}" onclick="addToCart('{{ product.product_name }}')">
+                                                <span class="b-text">خرید</span>        
+                                                <i id="b-icon" class="fa-solid fa-cart-shopping"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="draggable-list">
+                <div class="title">
+                    <span>ساعت ها</span>
+                </div>
+                <div id="owl-product" class="owl-carousel owl-theme">
+                    {% for product in data.products %}
+                        {% if product.type_product == 1 %}
+                            <div class="item">
+                                <div class="shoping-card">
+                                    <div class="img-sec">
+                                        <img src="{{ product.gdrive_link }}" alt="">
+                                    </div>
+                                    <div class="title2">
+                                        {{ product.product_name }}
+                                    </div>
+                                    <div class="buttons">
+                                        <div class="right">
+                                            <span class="price">{{ product.price_toman }}</span>
+                                            <span class="price"> تومان</span>
+                                            <br>
+                                            <span class="price">{{ product.price_dollar }}</span>
+                                            <span class="price">دلار</span>
+                                        </div>
+                                        <div class="left">
+                                            <button id="add-to-cart" data-product-id="{{ product.product_name }}" onclick="addToCart('{{ product.product_name }}')">
+                                                <span class="b-text">خرید</span>        
+                                                <i id="b-icon" class="fa-solid fa-cart-shopping"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>         
+        </main>
+        {% block javascript %}
         <script src="java script/main.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <script src="java script/jquery.js"></script>
+        <script src="java script/owl.carousel.min.js"></script>
+        {% endblock %}
     </body>
 </html>

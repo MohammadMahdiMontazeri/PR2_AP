@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cart</title>
+        <script src="https://kit.fontawesome.com/06f4ff7068.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/flexboxgrid.css">
+        <link rel="stylesheet" href="css/cart-style.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="nav-right">
+                    <a href="index"><i class="fa-solid fa-house"></i></a>
+                </div>
+                    </div>
+                </div>
+            </nav>
+        </header> 
+    <main>
+        <div class="cart-container">
+            <div class="cart-box">
+                <div class="cart-body">
+                    {% if dataa.sum.sum_toman %}
+                    <table class="cart">
+                        <thead>
+                            <tr class="head-cart">
+                                <th class="picture">
+                                    <span>عکس محصول</span>                                
+                                </th>
+                                <th class="name-product">
+                                    <span>اسم محصول</span>
+                                </th>
+                                <th class="quantity">
+                                    <span>تعداد</span>
+                                </th>
+                                <th class="price">
+                                    <span>قیمت</span>
+                                </th>
+                                <th class="total-price">
+                                    <span>قیمت نهایی</span>
+                                </th>
+                                <th class="remove">
+                                    <span>حذف</span> 
+                                </th>
+                            </tr>
+                        </thead>
+                        {% for product in dataa.cart %}
+                        <tbody>
+                            <tr class="product-in-cart">
+                                <td class="picture">
+                                    <img class="pic-of-product" src="{{ product.gdrive_link }}" alt="">
+                                </td>
+                                <td class="name-product">
+                                    <span>{{ product.product_name }}</span>
+                                </td>
+                                <td class="quantity">
+                                    <button data-product-id="{{ product.product_name }}" >
+                                        <i class="fa-solid fa-plus" onclick="inCount('{{ product.product_name}}')"></i>
+                                    </button>                                
+                                    <span>{{ product.count }}</span>
+                                    <button  data-product-id="{{ product.product_name }}" >
+                                        <i class="fa-solid fa-minus" onclick="deCount('{{ product.product_name}}')"></i>
+                                    </button>                
+                                </td>
+                                <td class="price">
+                                    <span>{{ product.price_toman }}</span>
+                                    <span> تومان</span>
+                                    <br>
+                                    <span>{{ product.price_dollar }}</span>
+                                    <span>دلار</span>
+                                </td>
+                                <td class="total-price">
+                                    <span>{{ product.total_toman }}</span>
+                                    <span> تومان</span>
+                                    <br>
+                                    <span>{{ product.total_dollar }}</span>
+                                    <span>دلار</span>
+                                </td>
+                                <td class="remove-btn">
+                                    <button id="remove-from-cart" data-product-id="{{ product.product_name }}">
+                                        <i class="fa-solid fa-xmark" onclick="rmProduct('{{ product.product_name}}')"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>                
+                <div class="footer-cart">                    
+                    <div class="right">
+                        <span>جمع سبد خرید (به تومان) :</span>
+                        <span>{{ dataa.sum.sum_toman }}</span>
+                        <span> تومان</span>
+                    </div>
+                    <din class="left">
+                        <span>{{ dataa.sum.sum_dollar }}</span>
+                        <span>دلار</span>
+                    </din>
+                </div>
+                <form action="">
+                    <div class="submit-btn-container">
+                        <input type="submit" value="نهایی کردن سفارش">
+                    </div>
+                </form>   
+                {% endif %}
+                {% if not dataa.sum.sum_toman %}
+                <div class="footer-cart">                    
+                    <div class="right">
+                        <span id="empty-cart">سبد خرید شما خالی است.</span>
+                    </div>
+                </div>
+                {% endif %}  
+            </div>
+        </div>
+    </main>
+    {% block javascript %}
+    <script >
+        function deCount(productName) {
+  fetch("/de-count", {
+    method: "POST",
+    body: JSON.stringify({ productName: productName })
+  }).then((_res) => {
+    window.location.reload();
+  });
+};
+
+function inCount(productName) {
+  fetch("/in-count", {
+    method: "POST",
+    body: JSON.stringify({ productName: productName })
+  }).then((_res) => {
+    window.location.reload();
+  });
+};
+
+function rmProduct(productName) {
+  fetch("/remove-from-cart", {
+    method: "POST",
+    body: JSON.stringify({ productName: productName })
+  }).then((_res) => {
+    window.location.reload();
+  });
+};
+    </script>
+    {% endblock %}
+    </body>
+</html>

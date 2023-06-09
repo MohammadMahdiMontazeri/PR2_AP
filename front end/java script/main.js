@@ -17,3 +17,14 @@ setInterval (()=>{
     }
     setSlide(`slide${slideIndex}` , slideIndex)
 } , 4500)
+
+
+function addToCart(productName) {
+  fetch("/add-to-cart", {
+    method: "POST",
+    body: JSON.stringify({ productName: productName })
+  }).then((_res) => {
+    window.location.reload();
+  });
+};
+
