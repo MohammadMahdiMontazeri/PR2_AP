@@ -65,11 +65,15 @@
                                 </td>
                                 <td class="quantity">
                                     <div class="pl-btn" style="display: inline;">
-                                        <a href=""><i class="fa-solid fa-plus"></i></a>
+                                        <button id="in-count" data-product-id="{{ product.product_name }}">+</button>
+                                        <!-- <a href=""><i class="fa-solid fa-plus"></i></a> -->
                                     </div>
-                                    <div class="qua" style="display: inline;"><span>1</span></div>
+                                    <div class="qua" style="display: inline;"><span>{{ product.count }}</span></div>
+
                                     <div class="mi-btn" style="display: inline;">
-                                        <a href=""><i class="fa-solid fa-minus"></i></a>
+                                        <button id="de-count" data-product-id="{{ product.product_name }}">-</button>
+                                        <!-- <a href=""><i class="fa-solid fa-minus"></i></a> -->
+                                        
                                     </div>
                                 </td>
                                 <td class="price">
@@ -88,7 +92,12 @@
                                 </td>
 
                                 <td>
-                                    <a href="" class="remove-btn"><i class="fa-solid fa-xmark"></i></a>
+                                    <div class="remove-btn">
+                                        <button id="remove-from-cart" data-product-id="{{ product.product_name }}">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </div>
+                                    
                                 </td>
                             </tr>
                         </tbody>
@@ -124,6 +133,43 @@
         </div>
 
     </main>
+    {% block javascript %}
+    <script>
 
+       var button = document.getElementById("remove-from-cart");
+        button.addEventListener("click", function() {
+        var productName = button.getAttribute("data-product-id");
+        fetch("/remove-from-cart", {
+            method: "POST",
+            body: JSON.stringify({ productName: productName })
+        }).then((_res) => {
+            window.location.reload();
+        });
+        });
+
+        var button = document.getElementById("in-count");
+        button.addEventListener("click", function() {
+        var productName = button.getAttribute("data-product-id");
+        fetch("/in-count", {
+            method: "POST",
+            body: JSON.stringify({ productName: productName })
+        }).then((_res) => {
+            window.location.reload();
+        });
+        });
+
+        var button = document.getElementById("de-count");
+        button.addEventListener("click", function() {
+        var productName = button.getAttribute("data-product-id");
+        fetch("/de-count", {
+            method: "POST",
+            body: JSON.stringify({ productName: productName })
+        }).then((_res) => {
+            window.location.reload();
+        });
+        });
+
+    </script>
+    {% endblock %}
     </body>
 </html>

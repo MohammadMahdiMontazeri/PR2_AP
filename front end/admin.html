@@ -69,7 +69,20 @@
             </div>
         </main>
         {% block javascript %}
-        <script src="java script/main.js"></script>
+        <script>
+
+           var button = document.getElementById("remove-product");
+            button.addEventListener("click", function() {
+            var productName = button.getAttribute("data-product-id");
+            fetch("/remove-product", {
+                method: "POST",
+                body: JSON.stringify({ productName: productName })
+            }).then((_res) => {
+                window.location.reload();
+            });
+            });
+
+        </script>
         {% endblock %}
     </body>
 </html>
