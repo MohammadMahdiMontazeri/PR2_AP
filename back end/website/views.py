@@ -1,3 +1,5 @@
+
+
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from .models import Cart, Products
 from werkzeug.utils import secure_filename
@@ -79,11 +81,11 @@ def upload():
         if type_product == None:
             type_product = 0
         new_product = None
-        if type_product == 0:
+        if type_product == 0 and product_name and gdrive_link:
             new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count, gdrive_link=gdrive_link, type_product=type_product)
             db.session.add(new_product)
             db.session.commit()
-        if type_product == '1':
+        if type_product == '1' and product_name and gdrive_link:
             new_product = Products(product_name=product_name, price_toman=price_toman, price_dollar=price_dollar, count=count, gdrive_link=gdrive_link, type_product=type_product)
             db.session.add(new_product)
             db.session.commit()
